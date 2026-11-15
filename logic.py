@@ -9,11 +9,17 @@ class TextAnalysis:
     # Задание №1
     memory = defaultdict(list)
     def __init__(self, text, owner):
-
+            
         # Задание №2
         TextAnalysis.memory[owner].append(self)
         self.text = text
         self.translation = self.__translate(self.text, "ru", "en")
+        questions = {'как тебя зовут' : "Я супер-крутой-бот и мое ппредназначение помогать тебе!",
+             "сколько тебе лет" : "Это слишком философский вопрос"}
+        if self.text.lower() in questions.keys():
+         self.response = questions[self.text.lower()]
+        else:
+          self.response = self.get_answer() 
 
 
     def __translate(self, text, from_lang, to_lang):
